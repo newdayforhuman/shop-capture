@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop Capture file format</title>
+<meta name="description" content="How Shop Capture stores notes: one folder per note, a Markdown file and JPEG photos, readable without the app.">
+<link rel="icon" href="img/icon.png">
+<style>
+  :root {
+    --bg: #14181d;
+    --line: #313843;
+    --text: #eef1f4;
+    --muted: #9aa5b1;
+    --orange: #ff9a00;
+    --blue: #3b9dff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--orange); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  header.bar { padding: 20px 0; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 18px; text-decoration: none; color: var(--text); }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  h1 { font-size: clamp(32px, 5vw, 46px); line-height: 1.1; letter-spacing: -0.02em; margin: 32px 0 8px; }
+  .date { color: var(--muted); font-size: 15px; margin: 0 0 32px; }
+  .short {
+    border: 1px solid var(--line); border-left: 4px solid var(--orange);
+    border-radius: 12px; padding: 18px 22px; margin: 0 0 40px; font-size: 19px;
+  }
+  h2 { font-size: 23px; letter-spacing: -0.01em; margin: 44px 0 10px; }
+  p, li, td { color: #cdd4dc; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 8px; }
+  strong { color: var(--text); font-weight: 600; }
+  code {
+    font: 0.88em ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    background: #0d1014; border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px;
+    color: #dfe5eb; overflow-wrap: anywhere;
+  }
+  pre {
+    margin: 0 0 18px; background: #0d1014; border: 1px solid var(--line); border-radius: 14px;
+    padding: 18px 20px; overflow-x: auto;
+    font: 13.5px/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #cfd6de;
+  }
+  pre .c { color: #6c7784; }
+  pre .k { color: var(--orange); }
+  pre .f { color: var(--blue); }
+  .tablewrap { overflow-x: auto; margin: 0 0 18px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15.5px; min-width: 420px; }
+  th, td { text-align: left; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+  td:first-child { white-space: nowrap; }
+  footer { border-top: 1px solid var(--line); margin-top: 56px; padding: 28px 0 56px; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="bar">
+    <a class="brand" href="./"><img src="img/icon.png" alt="">Shop Capture</a>
+  </header>
+
+  <h1>File format</h1>
+  <p class="date">Format version 1</p>
+
+  <p class="short">A note is a folder. Inside is one Markdown file and the note's photos as JPEGs. There is no database: the Markdown file is the note, and you can read or edit it without the app.</p>
+
+  <h2>Where notes are</h2>
+  <p>With iCloud Drive on, notes are in <strong>iCloud Drive &rsaquo; Shop Capture</strong>, which shows up in the Files app and in Finder on a Mac. Without iCloud they are in <strong>On My iPhone &rsaquo; Shop Capture</strong> in the Files app.</p>
+
+  <h2>One folder per note</h2>
+<pre><span class="f">Shop Capture/</span>
+  <span class="f">2026-11-14_074210/</span>
+    note.md
+    <span class="f">photos/</span>
+      2026-11-14_074605.jpg
+      2026-11-14_075118.jpg</pre>
+  <ul>
+    <li>The folder is named for the moment the note was started, as <code>YYYY-MM-DD_HHMMSS</code>. The name does not change when you give the note a title.</li>
+    <li>Each photo is named for the moment it was taken, the same way. A second photo in the same second gets <code>-2</code> on the end.</li>
+    <li>Photos are full-resolution JPEGs, as they came from the camera.</li>
+  </ul>
+
+  <h2>note.md</h2>
+<pre><span class="k">---</span>
+title: Compressor service
+created: 2026-11-14T07:42:10-06:00
+updated: 2026-11-14T08:10:44-06:00
+format: 1
+<span class="k">---</span>
+
+# Compressor service
+
+<span class="c">&lt;!-- block text 2026-11-14T07:44:31-06:00 --&gt;</span>
+Tank is holding a little over 90 with nothing running.
+
+<span class="c">&lt;!-- block photo 2026-11-14T07:46:05-06:00 edited 2026-11-14T07:46:40-06:00 --&gt;</span>
+![](photos/2026-11-14_074605.jpg)
+
+Tank gauge before draining.
+
+<span class="c">&lt;!-- block text 2026-11-14T07:58:03-06:00 edited 2026-11-14T08:10:44-06:00 --&gt;</span>
+Belt looks fine. Filter is due, order one this week.</pre>
+
+  <h2>The header</h2>
+  <p>The lines between the two <code>---</code> lines describe the note.</p>
+  <div class="tablewrap">
+  <table>
+    <tr><th>Line</th><th>Meaning</th></tr>
+    <tr><td><code>title</code></td><td>The note's title. Left out if the note has none.</td></tr>
+    <tr><td><code>created</code></td><td>When the note was started.</td></tr>
+    <tr><td><code>updated</code></td><td>When the note was last changed.</td></tr>
+    <tr><td><code>format</code></td><td>The version of this format. Currently 1.</td></tr>
+  </table>
+  </div>
+  <p>The <code># Title</code> heading under the header is a copy of the title, there so the note reads properly in a Markdown viewer. Any other lines you add to the header are kept.</p>
+
+  <h2>Entries</h2>
+  <p>The rest of the file is the note's entries, in the order they were captured. Each one starts with a marker line and runs until the next marker:</p>
+<pre><span class="c">&lt;!-- block TYPE CAPTURED --&gt;</span>
+<span class="c">&lt;!-- block TYPE CAPTURED edited EDITED --&gt;</span></pre>
+  <p>A marker is an HTML comment, so it is invisible when the file is shown in Obsidian or any other Markdown viewer. What you see there is just the text and the photos.</p>
+  <div class="tablewrap">
+  <table>
+    <tr><th>Type</th><th>What follows the marker</th></tr>
+    <tr><td><code>text</code></td><td>The text of the entry.</td></tr>
+    <tr><td><code>photo</code></td><td>An image line, <code>![](photos/NAME.jpg)</code>. Any text under the image is that photo's caption.</td></tr>
+    <tr><td><code>divider</code></td><td>A line, written as <code>---</code>.</td></tr>
+  </table>
+  </div>
+
+  <h2>Times</h2>
+  <ul>
+    <li>Every time is written in full with the local time zone offset, for example <code>2026-11-14T07:42:10-06:00</code>.</li>
+    <li><strong>The captured time never changes.</strong> It is when the text was added or the photo was taken.</li>
+    <li>If you later change an entry's text, or a photo's caption, <code>edited</code> records when. The captured time stays as it was.</li>
+  </ul>
+
+  <h2>Editing a note outside the app</h2>
+  <p>You can open <code>note.md</code> in any editor. When the app next opens the note it reads the file again, and it is written to keep whatever it finds:</p>
+  <ul>
+    <li>Text with no marker above it is kept and shown as an entry of its own, without a time.</li>
+    <li>Text you type under a photo's image line becomes that photo's caption.</li>
+    <li>A marker with a type the app does not know is kept, along with what follows it.</li>
+    <li>A marker that is not well formed, for example one with a mistyped time, is treated as ordinary text and kept.</li>
+  </ul>
+
+  <h2>If two devices change the same note</h2>
+  <p>If a note is changed in two places before they have synced, the app is built to keep both. The other version is saved beside the note as a file named like <code>note conflict 2026-11-14_091544.md</code>, and the app tells you it did so. Nothing is merged or thrown away for you.</p>
+
+  <footer>
+    <a href="./">Back to Shop Capture</a>
+  </footer>
+
+</div>
+</body>
+</html>
