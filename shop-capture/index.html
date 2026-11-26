@@ -89,6 +89,7 @@
   h2 { font-size: clamp(27px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 16px; text-wrap: balance; }
   section.feature p { color: var(--muted); margin: 0 0 14px; max-width: 30em; }
   section.feature p strong { color: var(--text); font-weight: 600; }
+  section.feature p.aside { font-size: 15px; font-style: italic; }
   ul.ticks { list-style: none; padding: 0; margin: 18px 0 0; }
   ul.ticks li { position: relative; padding-left: 26px; margin-bottom: 9px; color: var(--text); }
   ul.ticks li::before {
@@ -161,7 +162,7 @@
   <div class="hero">
     <div>
       <h1>Notes with photos, <em>as fast as you can take them.</em></h1>
-      <p class="lede">Shop Capture is an iPhone app for getting down what you just saw while your other hand is busy. Say it, shoot it, go back to the part. That evening it is all on your Mac, in order, with the times.</p>
+      <p class="lede">Shop Capture is an iPhone app for getting down what you just saw while your other hand is busy. Say it, shoot it, go back to the part. That evening it is all on your computer, Windows or Mac, in order, with the times.</p>
       <a class="pill join" href="https://docs.google.com/forms/d/e/1FAIpQLScI-pKQW9pTs1HiJr3GhKZ26GRwLNCWWOjyo8RjvXkhlvQECQ/viewform"><span class="dot"></span>Sign up for the TestFlight beta</a>
       <p class="req">iPhone, iOS 18 or later. Leave your email and you'll get the invite when the beta opens.</p>
     </div>
@@ -169,7 +170,7 @@
   </div>
 
   <div class="problem">
-    <p>I work on a shop floor and pick my notes up later on a Mac. Every tool I tried failed one of two ways: <span>adding a photo took too many steps, or the text and the photos ended up in separate places.</span> So I built this.</p>
+    <p>I work on a shop floor and pick my notes up later at a computer. Every tool I tried failed one of two ways: <span>adding a photo took too many steps, or the text and the photos ended up in separate places.</span> So I built this.</p>
   </div>
 
   <section class="feature" id="photo">
@@ -233,8 +234,9 @@
     <div>
       <p class="kicker">Plain files</p>
       <h2>Your notes are files you can read without this app.</h2>
-      <p>Each note is a folder holding one Markdown file and its JPEGs. They live in the app's own iCloud Drive folder, so they show up in Finder on your Mac with no export step.</p>
-      <p>Open the folder in Obsidian, or any Markdown viewer, and the photos appear in line with the text. Edit a note on the Mac and the app picks the change up. If the phone and the Mac both change the same note while out of touch, the app is built to keep both versions and tell you.</p>
+      <p>Each note is a folder holding one Markdown file and its JPEGs. They live in the app's own iCloud Drive folder, so they show up on your computer with no export step: in File Explorer on a Windows PC with Apple's free iCloud for Windows app (from the Microsoft Store), or in Finder on a Mac.</p>
+      <p>Open the folder in Obsidian, or any Markdown viewer, and the photos appear in line with the text. Edit a note on the computer and the app picks the change up. If the phone and the computer both change the same note while out of touch, the app is built to keep both versions and tell you.</p>
+      <p class="aside">So far it has been tested with a Mac. If you try it on Windows, I'd like to hear how it goes.</p>
       <p><a href="format.html">How the files are laid out</a></p>
     </div>
     <div class="shot">
@@ -287,7 +289,7 @@ Tank gauge before draining.</pre>
       <table>
         <tr><th>The app asks for</th><th>Why</th></tr>
         <tr><td>Camera</td><td>To take photos into a note. iOS asks the first time.</td></tr>
-        <tr><td>Its own iCloud folder</td><td>So notes appear on your Mac. It cannot see the rest of your iCloud Drive.</td></tr>
+        <tr><td>Its own iCloud folder</td><td>So notes appear on your computer. It cannot see the rest of your iCloud Drive.</td></tr>
         <tr><td>Microphone</td><td class="no">Never asked for.</td></tr>
         <tr><td>Photo library</td><td class="no">Never asked for. Photos go into the note's folder.</td></tr>
         <tr><td>Location</td><td class="no">Never asked for.</td></tr>
