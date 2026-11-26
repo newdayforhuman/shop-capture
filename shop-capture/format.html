@@ -8,65 +8,115 @@
 <link rel="icon" href="img/icon.png">
 <style>
   :root {
-    --bg: #14181d;
-    --line: #313843;
-    --text: #eef1f4;
-    --muted: #9aa5b1;
-    --orange: #ff9a00;
-    --blue: #3b9dff;
+    --bg: #f6f2ea;
+    --panel: #fffdf9;
+    --code: #efe9dd;
+    --line: #ddd4c4;
+    --text: #2b2a26;
+    --body: #4a463f;
+    --muted: #6d675d;
+    --accent: #9c5a35;
+    --accent-dark: #84482a;
+    --blue: #3f6a8a;
+    --radius: 14px;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--orange); }
+  a { color: var(--accent); }
+  a:hover { color: var(--accent-dark); }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--text); }
+  h1 em, h2 em { font-style: italic; color: var(--accent); }
+
+  /* Site menu, the same on every page */
+  header.site {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    gap: 6px 24px; padding: 20px 0; border-bottom: 1px solid var(--line);
+  }
+  header.site .brand { font-family: var(--serif); font-size: 21px; color: var(--text); text-decoration: none; }
+  header.site nav { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+  header.site nav a { color: var(--muted); text-decoration: none; font-size: 15px; }
+  header.site nav a:hover { color: var(--text); }
+  header.site nav a[aria-current] {
+    color: var(--text); text-decoration: underline; text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px; text-underline-offset: 7px;
+  }
+
+  .kicker { font-family: var(--serif); font-style: italic; color: var(--accent); font-size: 18px; margin: 0 0 6px; }
+  .btn {
+    display: inline-block; padding: 12px 20px; border-radius: 8px; font-weight: 600; font-size: 16px;
+    text-decoration: none; border: 1px solid var(--line); color: var(--text); background: var(--panel);
+  }
+  .btn:hover { border-color: var(--muted); color: var(--text); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
+
+  /* Shop Capture's own bar, under the site menu */
+  .appbar {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    gap: 8px 22px; padding: 14px 0; border-bottom: 1px solid var(--line);
+  }
+  .appbar .app { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 16px; color: var(--text); text-decoration: none; }
+  .appbar .app img { width: 30px; height: 30px; border-radius: 7px; }
+  .appbar nav { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+  .appbar nav a { color: var(--muted); text-decoration: none; font-size: 15px; }
+  .appbar nav a:hover, .appbar nav a[aria-current] { color: var(--text); }
+  .appbar nav a.join { color: var(--accent); font-weight: 600; }
+
   .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
-  header.bar { padding: 20px 0; }
-  .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 18px; text-decoration: none; color: var(--text); }
-  .brand img { width: 36px; height: 36px; border-radius: 9px; }
-  h1 { font-size: clamp(32px, 5vw, 46px); line-height: 1.1; letter-spacing: -0.02em; margin: 32px 0 8px; }
+  h1 { font-size: clamp(34px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.01em; margin: 40px 0 8px; }
   .date { color: var(--muted); font-size: 15px; margin: 0 0 32px; }
   .short {
-    border: 1px solid var(--line); border-left: 4px solid var(--orange);
-    border-radius: 12px; padding: 18px 22px; margin: 0 0 40px; font-size: 19px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px 22px; margin: 0 0 40px; font-family: var(--serif); font-size: 20px; line-height: 1.5;
   }
-  h2 { font-size: 23px; letter-spacing: -0.01em; margin: 44px 0 10px; }
-  p, li, td { color: #cdd4dc; }
+  h2 { font-size: 26px; margin: 44px 0 10px; }
+  p, li, td { color: var(--body); }
   p { margin: 0 0 14px; }
   ul { margin: 0 0 14px; padding-left: 22px; }
   li { margin-bottom: 8px; }
+  li::marker { color: var(--accent); }
   strong { color: var(--text); font-weight: 600; }
   code {
     font: 0.88em ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    background: #0d1014; border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px;
-    color: #dfe5eb; overflow-wrap: anywhere;
+    background: var(--code); border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px;
+    color: #3a362f; overflow-wrap: anywhere;
   }
   pre {
-    margin: 0 0 18px; background: #0d1014; border: 1px solid var(--line); border-radius: 14px;
+    margin: 0 0 18px; background: var(--code); border: 1px solid var(--line); border-radius: var(--radius);
     padding: 18px 20px; overflow-x: auto;
-    font: 13.5px/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #cfd6de;
+    font: 13.5px/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #3a362f;
   }
-  pre .c { color: #6c7784; }
-  pre .k { color: var(--orange); }
+  pre .c { color: #8a8274; }
+  pre .k { color: var(--accent); }
   pre .f { color: var(--blue); }
   .tablewrap { overflow-x: auto; margin: 0 0 18px; }
   table { width: 100%; border-collapse: collapse; font-size: 15.5px; min-width: 420px; }
   th, td { text-align: left; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { color: var(--muted); font-weight: 600; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+  th { color: var(--muted); font-weight: 600; font-size: 14px; }
   td:first-child { white-space: nowrap; }
   footer { border-top: 1px solid var(--line); margin-top: 56px; padding: 28px 0 56px; color: var(--muted); font-size: 14px; }
+  @media (max-width: 640px) { .wrap { padding: 0 16px; } h1 { margin-top: 28px; } }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header class="bar">
-    <a class="brand" href="./"><img src="img/icon.png" alt="">Shop Capture</a>
+  <header class="site">
+    <a class="brand" href="/">North Bench Labs</a>
+    <nav><a href="/shop-capture/" aria-current="page">Shop Capture</a><a href="/#questions">Questions</a><a href="/#contact">Contact</a></nav>
   </header>
+  <div class="appbar">
+    <a class="app" href="/shop-capture/"><img src="/shop-capture/img/icon.png" alt="">Shop Capture</a>
+    <nav><a href="/shop-capture/#photo">How it works</a><a href="/shop-capture/format.html" aria-current="page">File format</a><a href="/shop-capture/privacy.html">Privacy</a><a class="join" href="https://docs.google.com/forms/d/e/1FAIpQLScI-pKQW9pTs1HiJr3GhKZ26GRwLNCWWOjyo8RjvXkhlvQECQ/viewform">Join the beta</a></nav>
+  </div>
 
   <h1>File format</h1>
   <p class="date">Format version 1</p>
@@ -157,7 +207,7 @@ Belt looks fine. Filter is due, order one this week.</pre>
   <p>If a note is changed in two places before they have synced, the app is built to keep both. The other version is saved beside the note as a file named like <code>note conflict 2026-11-14_091544.md</code>, and the app tells you it did so. Nothing is merged or thrown away for you.</p>
 
   <footer>
-    <a href="./">Back to Shop Capture</a>
+    <a href="/shop-capture/">Back to Shop Capture</a> &middot; <a href="/">North Bench Labs</a>
   </footer>
 
 </div>
