@@ -60,15 +60,23 @@
 
   /* Shop Capture's own bar, under the site menu */
   .appbar {
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
-    gap: 8px 22px; padding: 14px 0; border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; flex-wrap: wrap; gap: 6px 18px;
+    padding: 0 0 14px; font-size: 14.5px; border-bottom: 1px solid var(--line);
   }
-  .appbar .app { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 16px; color: var(--text); text-decoration: none; }
-  .appbar .app img { width: 30px; height: 30px; border-radius: 7px; }
-  .appbar nav { display: flex; flex-wrap: wrap; gap: 4px 20px; }
-  .appbar nav a { color: var(--muted); text-decoration: none; font-size: 15px; }
+  header.site:has(+ .appbar) { border-bottom: 0; padding-bottom: 10px; }
+  .appbar .app {
+    display: inline-flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none;
+    padding-right: 18px; border-right: 1px solid var(--line);
+  }
+  .appbar .app img { width: 20px; height: 20px; border-radius: 5px; }
+  .appbar nav { display: flex; flex-wrap: wrap; gap: 4px 18px; flex: 1; }
+  .appbar nav a { color: var(--muted); text-decoration: none; }
   .appbar nav a:hover, .appbar nav a[aria-current] { color: var(--text); }
-  .appbar nav a.join { color: var(--accent); font-weight: 600; }
+  .appbar nav a.join { color: var(--accent); margin-left: auto; }
+  @media (max-width: 640px) {
+    .appbar .app { display: none; }
+    .appbar nav a.join { margin-left: 0; }
+  }
 
   img { max-width: 100%; display: block; }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
